@@ -1,21 +1,20 @@
 ---
-title: 'Google''s R Style Guide'
+title: 'ISAAK''s R Style Guide'
 ...
 
-Google's R Style Guide
+ISAAK's R Style Guide
 ======================
 
 R is a high-level programming language used primarily for statistical
 computing and graphics. The goal of the R Programming Style Guide is to
 make our R code easier to read, share, and verify. The rules below were
-designed in collaboration with the entire R user community at Google.
+designed after Google's R Style Guide.
 
 Summary: R Style Rules
 ----------------------
 
 1.  [File Names](#filenames): end in `.R`
-2.  [Identifiers](#identifiers): `variable.name` (or `variableName`),
-    `FunctionName`, `kConstantName`
+2.  [Identifiers](#identifiers): `variable_name_type`, `function_name`, `CONSTANTNAME`
 3.  [Line Length](#linelength): maximum 80 characters
 4.  [Indentation](#indentation): two spaces, no tabs
 5.  [Spacing](#spacing)
@@ -50,25 +49,31 @@ BAD: `foo.R`
 
 #### Identifiers
 
-Don't use underscores ( `_` ) or hyphens ( `-` ) in identifiers.
+Use underscores ( `_` ) but no hyphens ( `-` ) in identifiers.
 Identifiers should be named according to the following conventions. The
 preferred form for variable names is all lower case letters and words
-separated with dots (`variable.name`), but `variableName` is also
-accepted; function names have initial capital letters and no dots
-(`FunctionName`); constants are named like functions but with an initial
-`k`.
+separated with underscores. The variable names have suffixes identifying the data type according to the list below  (`variable_name_s`); Function names have lower case letters separated by underscores (`function_name`); constants are named in all caps `CONSTANT_NAME`.
 
--   `variable.name` is preferred, `variableName` is accepted\
-    GOOD: `avg.clicks`\
-    OK: `avgClicks`\
-    BAD: `avg_Clicks`
--   `FunctionName `\
-    GOOD: `CalculateAvgClicks`\
-    BAD: `calculate_avg_clicks                 `, `calculateAvgClicks`\
+-   `variable_name_type` is good\
+    OK: `avg_clicks_s`\
+		Make variable name noun.\
+-   `function_name`\
+    GOOD: `calculate_avg_clicks`\
     Make function names verbs.\
     *Exception: When creating a classed object, the function
     name (constructor) and class should match (e.g., lm).*
--   `kConstantName `
+-   `CONSTANTNAME`
+
+
+#### Suffix
+- nu numeric
+- ch character
+- df dataframe
+- ma matrix
+- ti tibble
+- bo boolean
+- fa factor
+- li list
 
 ### Syntax
 
@@ -86,73 +91,50 @@ wrapped line with the first character inside the parenthesis.*
 #### Spacing
 
 Place spaces around all binary operators (`=`, `+`, `-`, `<-`, etc.).\
-*Exception: Spaces around `=`'s are optional when passing parameters in
-a function call.*
 
 Do not place a space before a comma, but always place one after a
 comma.\
 \
 GOOD:
 
-    tab.prior <- table(df[df$days.from.opt < 0, "campaign.id"])
-    total <- sum(x[, 1])
-    total <- sum(x[1, ])
+    tab_prior_df <- table(df[df$days_from_opt < 0, "campaign_id"])
+    total_nu <- sum(x_df[, 1])
+    total_nu <- sum(x_df[1, ])
 
-BAD:
-
-    tab.prior <- table(df[df$days.from.opt<0, "campaign.id"])  # Needs spaces around '<'
-    tab.prior <- table(df[df$days.from.opt < 0,"campaign.id"])  # Needs a space after the comma
-    tab.prior<- table(df[df$days.from.opt < 0, "campaign.id"])  # Needs a space before <-
-    tab.prior<-table(df[df$days.from.opt < 0, "campaign.id"])  # Needs spaces around <-
-    total <- sum(x[,1])  # Needs a space after the comma
-    total <- sum(x[ ,1])  # Needs a space after the comma, not before
 
 Place a space before left parenthesis, except in a function call.
 
 GOOD:\
 `if (debug)`
 
-BAD:\
-`if(debug)`
-
 Extra spacing (i.e., more than one space in a row) is okay if it
 improves alignment of equals signs or arrows (`<-`).
 
-    plot(x    = x.coord,
-         y    = data.mat[, MakeColName(metric, ptiles[1], "roiOpt")],
-         ylim = ylim,
+    plot(x    = x_coord_nu,
+         y    = data_ma[, 1],
+         ylim = ylim_nu,
          xlab = "dates",
-         ylab = metric,
-         main = (paste(metric, " for 3 samples ", sep = "")))
+         ylab = metric_ch,
+         main = (paste(metric_ch, " for 3 samples ", sep = "")))
 
 Do not place spaces around code in parentheses or square brackets.\
 *Exception: Always place a space after a comma.*
 
 GOOD:
 
-    if (debug)
-    x[1, ]
+    if (debug_bo)
+    x_df[1, ]
 
-BAD:
-
-    if ( debug )  # No spaces around debug
-    x[1,]  # Needs a space after the comma 
 
 #### Curly Braces {#curlybraces}
 
 An opening curly brace should never go on its own line; a closing curly
-brace should always go on its own line. You may omit curly braces when a
-block consists of a single statement; however, you must *consistently*
-either use or not use curly braces for single statement blocks.
+brace should always go on its own line. You may not omit curly braces when a
+block consists of a single statement.
 
-    if (is.null(ylim)) {
-      ylim <- c(0, 0.06)
+    if (is.null(ylim_nu)) {
+      ylim_nu <- c(0, 0.06)
     }
-
-xor (but not both)
-
-    if (is.null(ylim))
-      ylim <- c(0, 0.06)
 
 Always begin the body of a block on a new line.
 
@@ -171,26 +153,6 @@ curly braces.
       one or more lines
     }
 
-BAD:\
-
-``` {style="color:red"}
-if (condition) {
-  one or more lines
-}
-else {
-  one or more lines
-}
-```
-
-BAD:\
-
-``` {style="color:red"}
-if (condition)
-  one line
-else
-  one line
-```
-
 #### Assignment
 
 Use `<-`, not `=`, for assignment.
@@ -198,14 +160,10 @@ Use `<-`, not `=`, for assignment.
 GOOD:\
 ` x <- 5 `
 
-BAD:\
-` x = 5`
-
 #### Semicolons
 
 Do not terminate your lines with semicolons or use semicolons to put
-more than one command on the same line. (Semicolons are not necessary,
-and are omitted for consistency with other Google style guides.)
+more than one command on the same line. Semicolons are not necessary.
 
 ### Organization
 
@@ -222,7 +180,7 @@ understand each other's scripts faster and more easily.
 5.  Function definitions
 6.  Executed statements, if applicable (e.g., ` print`, `plot`)
 
-Unit tests should go in a separate file named `originalfilename_test.R`.
+Unit tests should go in a separate file named `test_originalfilename.R`.
 
 #### Commenting Guidelines {#comments}
 
@@ -233,7 +191,7 @@ Short comments can be placed after code preceded by two spaces, `#`, and
 then one space.
 
     # Create histogram of frequency of campaigns by pct budget spent.
-    hist(df$pct.spent,
+    hist(example_df$pct_spent,
          breaks = "scott",  # method for choosing number of buckets
          main   = "Histogram: fraction budget spent by campaignid",
          xlab   = "Fraction of budget spent",
@@ -248,59 +206,21 @@ In both function definitions and function calls, multiple arguments per
 line are allowed; line breaks are only allowed between assignments.\
 GOOD:
 
-    PredictCTR <- function(query, property, num.days,
-                           show.plot = TRUE)
+    PredictCTR <- function(query_ch, property_bo, num_days_nu,
+                           show_plot = TRUE)
 
-BAD:
-
-    PredictCTR <- function(query, property, num.days, show.plot =
-                           TRUE)
 
 Ideally, unit tests should serve as sample function calls (for shared
 library routines).
 
 #### Function Documentation {#functiondocumentation}
 
-Functions should contain a comments section immediately below the
-function definition line. These comments should consist of a
-one-sentence description of the function; a list of the function's
-arguments, denoted by `Args:`, with a description of each (including the
-data type); and a description of the return value, denoted by
-`Returns:`. The comments should be descriptive enough that a caller can
-use the function without reading any of the function's code.
-
-#### Example Function {#examplefunction}
-
-    CalculateSampleCovariance <- function(x, y, verbose = TRUE) {
-      # Computes the sample covariance between two vectors.
-      #
-      # Args:
-      #   x: One of two vectors whose sample covariance is to be calculated.
-      #   y: The other vector. x and y must have the same length, greater than one,
-      #      with no missing values.
-      #   verbose: If TRUE, prints sample covariance; if not, not. Default is TRUE.
-      #
-      # Returns:
-      #   The sample covariance between x and y.
-      n <- length(x)
-      # Error handling
-      if (n <= 1 || n != length(y)) {
-        stop("Arguments x and y have different lengths: ",
-             length(x), " and ", length(y), ".")
-      }
-      if (TRUE %in% is.na(x) || TRUE %in% is.na(y)) {
-        stop(" Arguments x and y must not have missing values.")
-      }
-      covariance <- var(x, y)
-      if (verbose)
-        cat("Covariance = ", round(covariance, 4), ".\n", sep = "")
-      return(covariance)
-    }
+Please follow the guidelines of roxygen2 (https://github.com/klutometis/roxygen).
 
 #### TODO Style {#todo}
 
 Use a consistent style for TODOs throughout your code.\
-`TODO(username): Explicit description of action to     be taken`
+`# TODO(username): Explicit description of action to be taken`
 
 ### Language
 
@@ -335,30 +255,10 @@ The coding conventions described above should be followed, unless there
 is good reason to do otherwise. Exceptions include legacy code and
 modifying third-party code.
 
-### Parting Words
-
-Use common sense and BE CONSISTENT.
-
-If you are editing code, take a few minutes to look at the code around
-you and determine its style. If others use spaces around their `if `
-clauses, you should, too. If their comments have little boxes of stars
-around them, make your comments have little boxes of stars around them,
-too.
-
-The point of having style guidelines is to have a common vocabulary of
-coding so people can concentrate on *what* you are saying, rather than
-on *how* you are saying it. We present global style rules here so people
-know the vocabulary. But local style is also important. If code you add
-to a file looks drastically different from the existing code around it,
-the discontinuity will throw readers out of their rhythm when they go to
-read it. Try to avoid this.
-
-OK, enough writing about writing code; the code itself is much more
-interesting. Have fun!
 
 ### References
 
-<http://www.maths.lth.se/help/R/RCC/> - R Coding Conventions
+<https://google.github.io/styleguide/Rguide.xml> - Google R Style Guide
 
-<http://ess.r-project.org/> - For emacs users. This runs R in your emacs
-and has an emacs mode.
+
+
