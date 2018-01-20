@@ -79,8 +79,7 @@ The maximum line length is 80 characters.
 
 #### Indentation
 
-When indenting your code, use two spaces. Never use tabs or mix tabs and
-spaces.\
+When indenting your code, use tabs. Try to avoid mixing spaces and tabs.
 *Exception: When a line break occurs inside parentheses, align the
 wrapped line with the first character inside the parenthesis.*
 
