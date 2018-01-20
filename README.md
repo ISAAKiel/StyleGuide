@@ -70,6 +70,7 @@ separated with underscores. The variable names have suffixes identifying the dat
 - bo boolean
 - fa factor
 - li list
+- mi mixed
 
 ### Syntax
 
