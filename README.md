@@ -1,7 +1,3 @@
----
-title: 'ISAAK''s R Style Guide'
-...
-
 ISAAK's R Style Guide
 ======================
 
@@ -13,35 +9,35 @@ designed after Google's R Style Guide.
 Summary: R Style Rules
 ----------------------
 
-1.  [File Names](#filenames): end in `.R`
+1.  [File Names](#file-names): end in `.R`
 2.  [Identifiers](#identifiers): `variable_name_type`, `function_name`, `CONSTANTNAME`
-3.  [Line Length](#linelength): maximum 80 characters
+3.  [Line Length](#line-length): maximum 80 characters
 4.  [Indentation](#indentation): two spaces, no tabs
 5.  [Spacing](#spacing)
-6.  [Curly Braces](#curlybraces): first on same line, last on own line
+6.  [Curly Braces](#curly-braces): first on same line, last on own line
 7.  [else](#else): Surround else with braces
 8.  [Assignment](#assignment): use `<-`, not `=`
 9.  [Semicolons](#semicolons): don't use them
-10. [General Layout and Ordering](#generallayout)
-11. [Commenting Guidelines](#comments): all comments begin with `#`
+10. [General Layout and Ordering](#general-layout-and-ordering)
+11. [Commenting Guidelines](#commenting-guidelines): all comments begin with `#`
     followed by a space; inline comments need two spaces before the `#`
-12. [Function Definitions and Calls](#functiondefinition)
-13. [Function Documentation](#functiondocumentation)
-14. [Example Function](#examplefunction)
-15. [TODO Style](#todo): `TODO(username)`
+12. [Function Definitions and Calls](#function-definitions-and-calls)
+13. [Function Documentation](#function-documentation)
+14. [Example Function](#example-function)
+15. [TODO Style](#todo-style): `TODO(username)`
 
 Summary: R Language Rules
 -------------------------
 
 1.  [`attach`](#attach): avoid using it
-2.  [Functions](#functionlanguage): errors should be raised using
+2.  [Functions](#functions): errors should be raised using
     `stop()`
-3.  [Objects and Methods](#object): avoid S4 objects and methods when
+3.  [Objects and Methods](#objects-and-methods): avoid S4 objects and methods when
     possible; never mix S3 and S4
 
 ### Notation and Naming
 
-#### File Names {#filenames}
+#### File Names
 
 File names should end in `.R` and, of course, be meaningful.\
 GOOD: `predict_ad_revenue.R`\
@@ -77,7 +73,7 @@ separated with underscores. The variable names have suffixes identifying the dat
 
 ### Syntax
 
-#### Line Length {#linelength}
+#### Line Length
 
 The maximum line length is 80 characters.
 
@@ -126,7 +122,7 @@ GOOD:
     x_df[1, ]
 
 
-#### Curly Braces {#curlybraces}
+#### Curly Braces
 
 An opening curly brace should never go on its own line; a closing curly
 brace should always go on its own line. You may not omit curly braces when a
@@ -142,7 +138,7 @@ BAD:\
 ` if (is.null(ylim))               ylim <- c(0, 0.06)`\
 ` if (is.null(ylim))               {ylim <- c(0, 0.06)} `
 
-#### Surround else with braces {#else}
+#### Surround else with braces
 
 An `else` statement should always be surrounded on the same line by
 curly braces.
@@ -167,7 +163,7 @@ more than one command on the same line. Semicolons are not necessary.
 
 ### Organization
 
-#### General Layout and Ordering {#generallayout}
+#### General Layout and Ordering
 
 If everyone uses the same general ordering, we'll be able to read and
 understand each other's scripts faster and more easily.
@@ -182,7 +178,7 @@ understand each other's scripts faster and more easily.
 
 Unit tests should go in a separate file named `test_originalfilename.R`.
 
-#### Commenting Guidelines {#comments}
+#### Commenting Guidelines
 
 Comment your code. Entire commented lines should begin with `#` and one
 space.
@@ -197,7 +193,7 @@ then one space.
          xlab   = "Fraction of budget spent",
          ylab   = "Frequency (count of campaignids)")
 
-#### Function Definitions and Calls {#functiondefinition}
+#### Function Definitions and Calls
 
 Function definitions should first list arguments without default values,
 followed by those with default values.
@@ -213,11 +209,11 @@ GOOD:
 Ideally, unit tests should serve as sample function calls (for shared
 library routines).
 
-#### Function Documentation {#functiondocumentation}
+#### Function Documentation
 
 Please follow the guidelines of roxygen2 (https://github.com/klutometis/roxygen).
 
-#### TODO Style {#todo}
+#### TODO Style
 
 Use a consistent style for TODOs throughout your code.\
 `# TODO(username): Explicit description of action to be taken`
@@ -229,11 +225,11 @@ Use a consistent style for TODOs throughout your code.\
 The possibilities for creating errors when using `attach` are numerous.
 Avoid it.
 
-#### Functions {#functionlanguage}
+#### Functions
 
 Errors should be raised using `stop()`.
 
-#### Objects and Methods {#object}
+#### Objects and Methods
 
 The S language has two object systems, S3 and S4, both of which are
 available in R. S3 methods are more interactive and flexible, whereas S4
