@@ -49,11 +49,12 @@ Use underscores ( `_` ) but no hyphens ( `-` ) in identifiers.  Identifiers
 should be named according to the following conventions. The preferred form for
 variable names is all lower case letters and words separated with underscores.
 The variable names have suffixes identifying the data type according to the list
-below  (`variable_name_s`); Function names have lower case letters separated by
-underscores (`function_name`); constants are named in all caps `CONSTANT_NAME`.
+below  (`variable_name_suffix`); Function names have lower case letters
+separated by underscores (`function_name`); constants are named in all caps
+`CONSTANT_NAME`.
 
 -   `variable_name_type` is good\
-    OK: `avg_clicks_s`\
+    OK: `avg_clicks_nu`\
 		Make variable name noun.\
 -   `function_name`\
     GOOD: `calculate_avg_clicks`\
