@@ -10,7 +10,8 @@ Summary: R Style Rules
 ----------------------
 
 1.  [File Names](#file-names): end in `.R`
-2.  [Identifiers](#identifiers): `variable_name_type`, `function_name`, `CONSTANTNAME`
+2.  [Identifiers](#identifiers): `variable_name_type`, `function_name`,
+    `CONSTANTNAME`
 3.  [Line Length](#line-length): maximum 80 characters
 4.  [Indentation](#indentation): two spaces, no tabs
 5.  [Spacing](#spacing)
@@ -30,10 +31,9 @@ Summary: R Language Rules
 -------------------------
 
 1.  [`attach`](#attach): avoid using it
-2.  [Functions](#functions): errors should be raised using
-    `stop()`
-3.  [Objects and Methods](#objects-and-methods): avoid S4 objects and methods when
-    possible; never mix S3 and S4
+2.  [Functions](#functions): errors should be raised using `stop()`
+3.  [Objects and Methods](#objects-and-methods): avoid S4 objects and methods
+    when possible; never mix S3 and S4
 
 ### Notation and Naming
 
@@ -45,10 +45,12 @@ BAD: `foo.R`
 
 #### Identifiers
 
-Use underscores ( `_` ) but no hyphens ( `-` ) in identifiers.
-Identifiers should be named according to the following conventions. The
-preferred form for variable names is all lower case letters and words
-separated with underscores. The variable names have suffixes identifying the data type according to the list below  (`variable_name_s`); Function names have lower case letters separated by underscores (`function_name`); constants are named in all caps `CONSTANT_NAME`.
+Use underscores ( `_` ) but no hyphens ( `-` ) in identifiers.  Identifiers
+should be named according to the following conventions. The preferred form for
+variable names is all lower case letters and words separated with underscores.
+The variable names have suffixes identifying the data type according to the list
+below  (`variable_name_s`); Function names have lower case letters separated by
+underscores (`function_name`); constants are named in all caps `CONSTANT_NAME`.
 
 -   `variable_name_type` is good\
     OK: `avg_clicks_s`\
@@ -211,7 +213,7 @@ library routines).
 
 #### Function Documentation
 
-Please follow the guidelines of roxygen2 (https://github.com/klutometis/roxygen).
+Please follow the guidelines of roxygen2 (https://github.com/klutometis/roxygen)
 
 #### TODO Style
 
